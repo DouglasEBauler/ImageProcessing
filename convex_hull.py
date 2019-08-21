@@ -28,19 +28,14 @@ def fill_points():
     f = open("C:/Temp/input.txt", "r")
 
     for line in f:
-        count_p = int(line)
+        values = line.replace("\n", "").split("  ")
 
-        while count_p > 0:
-            values = f.readline().replace("\n", "").split("  ")
+        try:
             list_points.append((int(values[0]), int(values[1])))
-
-            count_p -= 1
-
-        if len(list_points) > 0:
-            print(convex_graham_scan(list_points))
-
-        list_points.clear()
+        except:
+            if len(list_points) > 0:
+                print(convex_graham_scan(list_points))
+                list_points.clear()
 
 
-if __name__ == '__main__':
-    fill_points()
+fill_points()
